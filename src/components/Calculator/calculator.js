@@ -88,7 +88,6 @@ function Button({ type = "digit", value, onClick }) {
 }
 
 function Calculator({ category, onClose, onAddTransaction, date }) {
-  console.log(date);
   const [prevNumber, setPrevNumber] = useState("");
   const [operant, setOperant] = useState("");
   const [currentNumber, setCurrentNumber] = useState("0");

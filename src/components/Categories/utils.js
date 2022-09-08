@@ -3,15 +3,26 @@ import { colors } from "../../styles";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaMoneyBill } from "react-icons/fa";
 import { AiFillCar } from "react-icons/ai";
+import { RiBookFill } from "react-icons/ri";
+import { IoGameController } from "react-icons/io5";
 
 const ICONS = {
   cart: BsFillCartFill,
   bill: FaMoneyBill,
   car: AiFillCar,
+  education: RiBookFill,
+  game: IoGameController,
 };
 
 const COLORS = {
-  blue: "blue",
+  blue: "#3B82F6",
+  "light-blue": "#0EA5E9",
+  cyan: "#06B6D4",
+  teal: "#14B8A6",
+  green: "#10B981",
+  yellow: "#F59E0B",
+  orange: "#F97316",
+  red: "#EF4444"
 };
 
 export const getMonthlyData = (categories, date, type) =>
