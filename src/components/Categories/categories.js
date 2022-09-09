@@ -81,6 +81,8 @@ function Categories({ date, type }) {
         data={monthlyData}
         onAddTransaction={handleAddTransaction}
         date={date}
+        type={type}
+        setCategories={setCategories}
       />
     </Wrapper>
   );

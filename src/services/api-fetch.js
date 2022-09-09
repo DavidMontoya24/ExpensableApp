@@ -5,7 +5,7 @@ export default async function apiFetch(
   { method, headers, body } = {}
 ) {
   // const token = sessionStorage.getItem(tokenKey);
-  const token = "dSg79s92RqWSCzf4XQ5MhUMM";
+  const token = "MpAg7fZpPyXuzPa4YXjgaGW9";
 
   if (token) {
     headers = {

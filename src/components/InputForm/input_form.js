@@ -5,6 +5,7 @@ import { useState } from "react";
 import { dataColors, dataIcons } from "../Categories/utils";
 import { OptionColor, OptionIcon } from "./custom_options";
 import Button from "../Button/button";
+import apiFetch from "../../services/api-fetch";
 
 // import "./input-form.css"
 const StyledInputForm = styled.div`
@@ -49,13 +50,13 @@ const OptionsContainer = styled.div`
   flex-wrap: wrap;
 `
 
-function InputForm() {
+function InputForm({type, onClickClose, setCategories}) {
   const [selectedName, setSelectedName] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
+  // console.log(type);
 
     const handleClickColor = (event) => {
-      // event.preventDefault();
       const activeElement = document.querySelector(".activeColor");
       if (activeElement) {
         activeElement.classList.remove("activeColor");
@@ -66,7 +67,6 @@ function InputForm() {
     }
     
     const handleClickIcon = (event) => {
-      // event.preventDefault();
       const activeElement = document.querySelector(".activeIcon");
       if (activeElement) {
         activeElement.classList.remove("activeIcon");
@@ -76,22 +76,27 @@ function InputForm() {
       setSelectedIcon(iconValue);
     }
 
-    const handleInputName = (e) => {
+    const handleInputName = (event) => {
       const capitalize = (str) => { return str.charAt(0).toUpperCase() + str.slice(1);}
-      setSelectedName(capitalize(e.target.value))
-      console.log(selectedName)
+      setSelectedName(capitalize(event.target.value))
+      // console.log(selectedName)
     }
 
     function submit(event) {
       event.preventDefault();
-      console.log(selectedName, selectedColor, selectedIcon)
+      console.log(selectedName, selectedColor, selectedIcon);
+      const newCategory = { name: selectedName, "transaction_type": type, color: selectedColor, icon: selectedIcon}
+      apiFetch("categories", { body: newCategory }).then((data) => {
+        setCategories((prevState) => ([...prevState,data]))
+      }
+      );
     }
 
   return (
     <StyledInputForm>
       <StyledHeader>
         <h2>New Category</h2>
-        <BsXLg />
+        <BsXLg onClick={onClickClose} style={{cursor: 'pointer'}}/>
       </StyledHeader>
       <StyledFormContainer >
         <div>

@@ -32,11 +32,15 @@ const StyledBackground = styled.div`
   right: 0;
   bottom: 0;
 `;
-function CategoriesList({ data, onAddTransaction, date }) {
-  const [showInput, setShowInput] = useState(false)
+function CategoriesList({ data, onAddTransaction, date, type, setCategories }) {
+  const [showInput, setShowInput] = useState(false);
 
   function handleClick() {
     setShowInput(!showInput);
+  }
+  
+  function handleClickClose() {
+    setShowInput(false);
   }
 
   window.onclick = function(e) {
@@ -60,7 +64,7 @@ function CategoriesList({ data, onAddTransaction, date }) {
       </StyledNewCatContainer>
       {showInput && (
         <StyledBackground id="modalBackground">
-          <InputForm />
+          <InputForm type={type} onClickClose={handleClickClose} setCategories={setCategories}/>
         </StyledBackground>
         )}
     </Wrapper>

@@ -45,7 +45,9 @@ const ActiveLine = styled.span`
 
 function CategoriesPage() {
   let params = useParams();
+  // let iconAddShow = true;
   const [selectedType, setSelectedType] = useState("expense");
+  const [iconAddShow, setIconAddShow] = useState(true);
   const [searchParams, setSearchParams] = useLocalSearchParams("initialDate", {
     year: getYear(new Date()),
     month: getMonth(new Date()),
@@ -54,8 +56,11 @@ function CategoriesPage() {
   const handleShownCategory = (e) => {
     const value = e.target.closest(".js-cat-opt").children[0].children[1].innerHTML;
     const activeType = document.querySelector(".activeType");
-    if (activeType) { activeType.classList.remove("activeType") }
+    if (activeType) { 
+      activeType.classList.remove("activeType") 
+    }
     e.target.closest(".js-cat-opt").classList.add("activeType");
+    // setIconAddShow(false);
     if(value === "Expenses") {
       setSelectedType("expense")
     }
@@ -88,20 +93,22 @@ function CategoriesPage() {
       <Title>Categories</Title>
 
       <TypePicker>
-          <OptionType className="js-cat-opt" onClick={handleShownCategory}>
+          <OptionType className="js-cat-opt activeType" onClick={handleShownCategory}>
             <div style={{display: "flex", alignItems: "center", gap: "8px"}}>
-              <AiOutlinePlusCircle/>
-              <h4>Expenses</h4>
+              {iconAddShow ? <AiOutlinePlusCircle/> : <AiOutlineMinusCircle/>}
+              {/* <AiOutlinePlusCircle/> */}
+              <h4 className="js-cat-name">Expenses</h4>
             </div>
-            <ActiveLine className="js-active-line"></ActiveLine>
+            <ActiveLine ></ActiveLine>
           </OptionType>
           
           <OptionType className="js-cat-opt" onClick={handleShownCategory}>
             <div style={{display: "flex", alignItems: "center", gap: "8px"}}>
-              <AiOutlinePlusCircle/>
-              <h4>Income</h4>
+              {iconAddShow? <AiOutlinePlusCircle/> : <AiOutlineMinusCircle/>}
+              {/* <AiOutlinePlusCircle/> */}
+              <h4 className="js-cat-name">Income</h4>
             </div>
-            <ActiveLine className="js-active-line"></ActiveLine>
+            <ActiveLine ></ActiveLine>
           </OptionType>
       </TypePicker>
 
