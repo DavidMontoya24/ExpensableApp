@@ -40,7 +40,7 @@ function CategoriesList({ data, onAddTransaction, date }) {
   }
 
   window.onclick = function(e) {
-    if(e.target.id === "modalblack"){
+    if(e.target.id === "modalBackground"){
       setShowInput(false)
     }
   }
@@ -59,7 +59,7 @@ function CategoriesList({ data, onAddTransaction, date }) {
         <GrAdd />
       </StyledNewCatContainer>
       {showInput && (
-        <StyledBackground id="modalblack" >
+        <StyledBackground id="modalBackground">
           <InputForm />
         </StyledBackground>
         )}

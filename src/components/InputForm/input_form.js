@@ -42,8 +42,6 @@ const StyledFormContainer = styled.form`
   }
 `
 
-// const StyledButton
-
 const OptionsContainer = styled.div`
   justify-content: space-around;
   gap: 16px;
