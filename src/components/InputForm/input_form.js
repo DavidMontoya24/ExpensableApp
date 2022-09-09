@@ -4,9 +4,9 @@ import { colors, fonts, typography } from "../../styles";
 import { useState } from "react";
 import { dataColors, dataIcons } from "../Categories/utils";
 import { OptionColor, OptionIcon } from "./custom_options";
+import Button from "../Button/button";
 
 // import "./input-form.css"
-
 const StyledInputForm = styled.div`
   width: 280px;
   height: 500px;
@@ -14,6 +14,12 @@ const StyledInputForm = styled.div`
   background-color: ${colors.white};
   padding: 16px;
   font-style: ${fonts.primary};
+`
+
+const StyledInput = styled.input`
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid ${colors.gray[200]};
 `
 
 const StyledHeader = styled.div`
@@ -36,6 +42,8 @@ const StyledFormContainer = styled.form`
   }
 `
 
+// const StyledButton
+
 const OptionsContainer = styled.div`
   justify-content: space-around;
   gap: 16px;
@@ -44,6 +52,7 @@ const OptionsContainer = styled.div`
 `
 
 function InputForm() {
+  const [selectedName, setSelectedName] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("");
 
@@ -69,9 +78,15 @@ function InputForm() {
       setSelectedIcon(iconValue);
     }
 
+    const handleInputName = (e) => {
+      const capitalize = (str) => { return str.charAt(0).toUpperCase() + str.slice(1);}
+      setSelectedName(capitalize(e.target.value))
+      console.log(selectedName)
+    }
+
     function submit(event) {
       event.preventDefault();
-      console.log(selectedColor, selectedIcon)
+      console.log(selectedName, selectedColor, selectedIcon)
     }
 
   return (
@@ -84,7 +99,7 @@ function InputForm() {
         <div>
           <label>
             <h3>Name</h3>
-            <input type="text"/>
+            <StyledInput type="text" onChange={handleInputName}/>
           </label>
         </div>
 
@@ -110,7 +125,7 @@ function InputForm() {
           </label>
         </div>
 
-        <button onClick={submit}>Create</button>
+        <Button onClick={submit} isFullWidth={true} style={{backgroundColor: "#3A824D", color: "white"}}>Create</Button>
       </StyledFormContainer>
     </StyledInputForm>
   )
