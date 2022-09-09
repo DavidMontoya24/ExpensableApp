@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
+import { colors } from "../../styles";
 
-const StyledOption = styled.div`
+const StyledOptionColor = styled.div`
   width: 43px;
   height: 43px;
   border-radius: 50%;
@@ -10,12 +11,49 @@ const StyledOption = styled.div`
     outline: 3px solid ${({color}) => color};
     outline-offset: 2px;
   }
+  &.activeColor{
+    outline: 3px solid ${({color}) => color};
+    outline-offset: 2px;
+  }
 `
 
-function CustomOptions({data, ...rest}){
+const StyledOptionIcon = styled.div`
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: ${colors.gray[600]};
+    & svg {
+    color: ${colors.white};
+    }
+  }
+  & svg {
+    height: 25px;
+    width: 25px;
+    color: ${colors.gray[600]};
+  }
+  &.activeIcon{
+    background-color: ${colors.gray[600]};
+    & svg {
+    color: ${colors.white};
+    }
+  }
+`
+
+export function OptionColor({data, onClick,...rest}){
   return (
-    <StyledOption key={data.id} color={data.color} />
+    <StyledOptionColor color={data.color} onClick={onClick} value={data.value}/>
   )
 }
 
-export default CustomOptions;
+export function OptionIcon({data, onClick,...rest}){
+  return (
+    <StyledOptionIcon  className="js-select-icon" onClick={onClick} value={data.value}>
+      {<data.icon />}
+    </StyledOptionIcon>
+  )
+}

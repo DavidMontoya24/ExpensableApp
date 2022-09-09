@@ -2,15 +2,17 @@ import { parseISO } from "date-fns";
 import { colors } from "../../styles";
 import { BsFillCartFill } from "react-icons/bs";
 import { FaMoneyBill } from "react-icons/fa";
-import { AiFillCar } from "react-icons/ai";
-import { RiBookFill } from "react-icons/ri";
+import { AiFillCar, AiFillBank, AiFillGift } from "react-icons/ai";
+import { FaGraduationCap } from "react-icons/fa";
 import { IoGameController } from "react-icons/io5";
+import { GiHealthNormal } from "react-icons/gi";
+import { RiBook2Fill } from "react-icons/ri";
 
 const ICONS = {
   cart: BsFillCartFill,
   bill: FaMoneyBill,
   car: AiFillCar,
-  education: RiBookFill,
+  education: FaGraduationCap,
   game: IoGameController,
 };
 
@@ -45,3 +47,25 @@ export const getMonthlyData = (categories, date, type) =>
         }, 0),
       };
     });
+
+export const dataColors = [
+  {id: 1, value: "red", color:"#EF4444"},
+  {id: 2, value: "orange", color: "#F97316"},
+  {id: 3, value: "yellow", color: "#F59E0B"},
+  {id: 4, value: "green", color: "#10B981"},
+  {id: 5, value: "teal", color: "#14B8A6"},
+  {id: 6, value: "cyan", color: "#06B6D4"},
+  {id: 7, value: "light-blue", color: "#0EA5E9"},
+  {id: 8, value: "blue", color: "#3B82F6"},
+];
+
+export const dataIcons = [
+  {id: 1, value: "bank", icon: AiFillBank},
+  {id: 2, value: "cart", icon: BsFillCartFill},
+  {id: 3, value: "health", icon: GiHealthNormal},
+  {id: 4, value: "game", icon: IoGameController},
+  {id: 5, value: "utilities", icon: RiBook2Fill},
+  {id: 6, value: "education", icon: FaGraduationCap},
+  {id: 7, value: "car", icon: AiFillCar},
+  {id: 8, value: "gift", icon: AiFillGift},
+];

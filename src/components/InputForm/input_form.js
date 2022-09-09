@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 import { BsXLg } from "react-icons/bs";
-import { colors } from "../../styles";
+import { colors, fonts, typography } from "../../styles";
 import { useState } from "react";
-import CustomOptions from "./custom_options";
-import { typography } from "./"
+import { dataColors, dataIcons } from "../Categories/utils";
+import { OptionColor, OptionIcon } from "./custom_options";
+
 // import "./input-form.css"
 
 const StyledInputForm = styled.div`
@@ -12,6 +13,7 @@ const StyledInputForm = styled.div`
   border-radius: 8px;
   background-color: ${colors.white};
   padding: 16px;
+  font-style: ${fonts.primary};
 `
 
 const StyledHeader = styled.div`
@@ -27,6 +29,10 @@ const StyledFormContainer = styled.form`
   gap: 16px;
   & h3 {
     text-transform: uppercase;
+    ${typography.text.xs}
+    line-height: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.125em;
   }
 `
 
@@ -37,19 +43,36 @@ const OptionsContainer = styled.div`
   flex-wrap: wrap;
 `
 
-const dataColors = [
-  {id: 1, value: "red", color:"#EF4444"},
-  {id: 2, value: "orange", color: "#F97316"},
-  {id: 3, value: "yellow", color: "#F59E0B"},
-  {id: 4, value: "green", color: "#10B981"},
-  {id: 5, value: "teal", color: "#14B8A6"},
-  {id: 6, value: "cyan", color: "#06B6D4"},
-  {id: 7, value: "light-blue", color: "#0EA5E9"},
-  {id: 8, value: "blue", color: "#3B82F6"},
-];
-
 function InputForm() {
   const [selectedColor, setSelectedColor] = useState("");
+  const [selectedIcon, setSelectedIcon] = useState("");
+
+    const handleClickColor = (event) => {
+      // event.preventDefault();
+      const activeElement = document.querySelector(".activeColor");
+      if (activeElement) {
+        activeElement.classList.remove("activeColor");
+      }
+      const colorValue = event.target.getAttribute("value");
+      event.target.classList.add("activeColor");
+      setSelectedColor(colorValue);
+    }
+    
+    const handleClickIcon = (event) => {
+      // event.preventDefault();
+      const activeElement = document.querySelector(".activeIcon");
+      if (activeElement) {
+        activeElement.classList.remove("activeIcon");
+      }
+      const iconValue = event.target.closest(".js-select-icon").getAttribute("value");
+      event.target.closest(".js-select-icon").classList.add("activeIcon");
+      setSelectedIcon(iconValue);
+    }
+
+    function submit(event) {
+      event.preventDefault();
+      console.log(selectedColor, selectedIcon)
+    }
 
   return (
     <StyledInputForm>
@@ -70,24 +93,24 @@ function InputForm() {
             <h3>Color</h3>
             <OptionsContainer >
               {dataColors.map(element => {
-                return <CustomOptions data={element}/>
+                return <OptionColor key={element.id} data={element} onClick={handleClickColor}/>
               })}
-              {/* <input type="radio" name="color-btn" value="red"/>
-              <input type="radio" name="color-btn" value="orange"/>
-              <input type="radio" name="color-btn" value="yellow"/>
-              <input type="radio" name="color-btn" value="green"/>
-              <input type="radio" name="color-btn" value="teal"/>
-              <input type="radio" name="color-btn" value="cyan"/>
-              <input type="radio" name="color-btn" value="light-blue"/>
-              <input type="radio" name="color-btn" value="blue"/> */}
             </OptionsContainer>
           </label>
         </div>
 
         <div>
+          <label>
+            <h3>Icon</h3>
+            <OptionsContainer >
+              {dataIcons.map(element => {
+                return <OptionIcon key={element.id} data={element} onClick={handleClickIcon}/>
+              })}
+            </OptionsContainer>
+          </label>
         </div>
 
-        <button>Create</button>
+        <button onClick={submit}>Create</button>
       </StyledFormContainer>
     </StyledInputForm>
   )
