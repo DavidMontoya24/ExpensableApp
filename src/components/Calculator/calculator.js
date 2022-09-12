@@ -48,6 +48,8 @@ const Header = styled.header`
   background-color: ${({ color }) => color};
   display: flex;
   gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
   grid-column: span 5;
 `;
 
@@ -195,12 +197,14 @@ function Calculator({ category, onClose, onAddTransaction, date }) {
   return (
     <Container>
       <Header color={category.color}>
+        <div style={{display: "flex", gap: "5px"}}>
         <CircleIcon color={category.color} Icon={category.icon} inverted />
         <HeaderInfo>
           <p className="title">Add expense to</p>
           <p className="category">{category.name}</p>
         </HeaderInfo>
-        <p onClick={onClose}>X</p>
+        </div>
+        <p style={{color: "white", cursor: "pointer"}} onClick={onClose}>✕</p>
       </Header>
       <Display>$ {display}</Display>
       <Button value="÷" type="operant" onClick={handleOperantClick} />

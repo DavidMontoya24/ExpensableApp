@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const MainContainer = styled.main`
   padding: 1.5rem 2rem;
-  position: relative;
+  /* position: relative; */
 `;
 
 function App() {

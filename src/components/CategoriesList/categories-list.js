@@ -7,6 +7,7 @@ import { useState } from "react";
 import InputForm from "../InputForm/input_form";
 
 const StyledNewCatContainer = styled.div`
+  height: 80px;
   border-radius: 0.5rem;
   border: 2px dotted gray;
   display: flex;
