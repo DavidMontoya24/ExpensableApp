@@ -181,13 +181,13 @@ function Calculator({ category, onClose, onAddTransaction, date }) {
   function calculate() {
     switch (operant) {
       case "+":
-        return `${(Number(prevNumber) + Number(currentNumber)).toFixed(2)}`;
+        return +`${(Number(prevNumber) + Number(currentNumber)).toFixed(2)}`;
       case "-":
-        return `${(Number(prevNumber) - Number(currentNumber)).toFixed(2)}`;
+        return +`${(Number(prevNumber) - Number(currentNumber)).toFixed(2)}`;
       case "×":
-        return `${(Number(prevNumber) * Number(currentNumber)).toFixed(2)}`;
+        return +`${(Number(prevNumber) * Number(currentNumber)).toFixed(2)}`;
       case "÷":
-        return `${(Number(prevNumber) / Number(currentNumber)).toFixed(2)}`;
+        return +`${(Number(prevNumber) / Number(currentNumber)).toFixed(2)}`;
 
       default:
         return;
