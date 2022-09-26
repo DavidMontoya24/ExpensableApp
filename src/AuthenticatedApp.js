@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 const MainContainer = styled.main`
-  padding: 1.5rem 2rem;
+  /* padding: 1.5rem 2rem; */
 `;
 
 function AuthenticatedApp() {

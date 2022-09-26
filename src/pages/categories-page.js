@@ -7,6 +7,13 @@ import { useParams } from "react-router-dom";
 import { useLocalSearchParams } from "../hooks";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { useState } from "react";
+import { txnsByDay } from "../components/Transactions/utils";
+import Transactions from "../components/Transactions/transactions";
+
+const CategoriesContainer = styled.div`
+  padding: 1.5rem 2rem;
+  width: 100%;
+`;
 
 const Title = styled.h1`
   ${typography.head.sm}
@@ -41,6 +48,13 @@ const OptionType = styled.div`
 
 const ActiveLine = styled.span`
   height: 3px;
+`
+
+const TransactionsContainer = styled.div`
+  min-width: 360px;
+  height: 100vh;
+  border-left: 1px solid lightgray;
+  padding: 1.5rem 2rem;
 `
 
 function CategoriesPage() {
@@ -89,7 +103,8 @@ function CategoriesPage() {
   };
 
   return (
-    <div>
+    <div style={{display: "flex"}}>
+    <CategoriesContainer>
       <Title>Categories</Title>
 
       <TypePicker>
@@ -118,6 +133,10 @@ function CategoriesPage() {
         onLeftClick={handleLeftClick}
       />
       <Categories {...{ date, type: selectedType }} />
+    </CategoriesContainer>
+    <TransactionsContainer>
+      <Transactions></Transactions>
+    </TransactionsContainer>
     </div>
   );
 }
