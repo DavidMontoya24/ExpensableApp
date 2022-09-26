@@ -44,12 +44,11 @@ async function txnsByDay() {
 function Transactions() {
     const [txns, setTxns] = useState("");
     
-    // let alltxns;
-    txnsByDay().then((result) => {
-        setTxns(result);
-    });
-
-  console.log(txns);
+    async function getTxnsByDay(){
+        const allTxns = await txnsByDay();
+        setTxns(allTxns);
+        console.log(txns);
+    }    
 
   return (
     <CardTxn>
